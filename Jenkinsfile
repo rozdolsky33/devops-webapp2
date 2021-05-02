@@ -13,13 +13,32 @@ pipeline {
     }
 
     stage('Build') {
-      steps {
-        sh '''whoami
+      parallel {
+        stage('Build') {
+          steps {
+            sh '''whoami
 date
 echo $PATH
 pwd
 ls -la
 ./gradlew build --info'''
+          }
+        }
+
+        stage('P1') {
+          steps {
+            sh '''date
+echo run parallel!!'''
+          }
+        }
+
+        stage('P2') {
+          steps {
+            sh '''date
+echo run parallel!!'''
+          }
+        }
+
       }
     }
 
