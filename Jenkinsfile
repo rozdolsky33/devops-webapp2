@@ -19,7 +19,7 @@ pipeline {
             sh '''RELEASE=webapp.war
 pwd
 ./gradlew build -PwarName=$RELEASE --info
-
+ls -la /build/libs/
 cp ./build/libs/$RELEASE ./docker'''
           }
         }
